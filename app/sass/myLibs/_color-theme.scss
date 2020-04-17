@@ -1,0 +1,33 @@
+$distance: 60;
+$invert-distance: $distance * -1;
+
+// the main colors
+$base-color: hsl(87, 100%, 91%);
+$info-color: adjust-color($base-color, $hue: 82, $saturation: -44%, $lightness: -18%);
+$warn-color: adjust-color($base-color, $hue: -87, $saturation: -17%, $lightness: -18%);
+$succes-color: adjust-color($base-color, $hue: -40, $saturation: -5%, $lightness: -15%);
+
+// font-color
+$font-color: #999999;
+$alt-font-color: #000000;
+$font-light-color: #fff;
+
+// font-shadow-color
+
+// link-color
+
+// buttons-color
+
+//icon-color (for svg)
+
+// round-border
+
+// row-color
+
+// gradient
+
+/* 
+Example:
+   @alert-primary-bg: lighten(@base-color, 35%);
+   @alert-primary-border: darken(spin(@alert-primary-bg, -10), 5%);
+   @alert-primary-text: darken(@alert-primary-bg, 50%); */

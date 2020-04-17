@@ -1,0 +1,26 @@
+// ============================== some font ==============================
+
+/* @font-face {
+    font-family: 'Noto Sans';
+    src: url('../fonts/noto_sans-regular/notosans-regular-webfont.eot');
+    src: url('../fonts/noto_sans-regular/notosans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/noto_sans-regular/notosans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/noto_sans-regular/notosans-regular-webfont.woff') format('woff'),
+         url('../fonts/noto_sans-regular/notosans-regular-webfont.ttf') format('truetype'),
+         url('../fonts/noto_sans-regular/notosans-regular-webfont.svg#noto_sansregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+} */
+
+@mixin font($name, $filePath, $weight, $style) {
+    font-family: $name;
+    src: local($name);
+    src: url('#{$filePath}.eot');
+    src: url('#{$filePath}.eot?#iefix') format('embedded-opentype'),
+         url('#{$filePath}.woff2') format('woff2'),
+         url('#{$filePath}.woff') format('woff'),
+         url('#{$filePath}.ttf') format('truetype'),
+         url('#{$filePath}.svg#alleritalic') format('svg');
+    font-weight: $weight;
+    font-style: $style;
+}
