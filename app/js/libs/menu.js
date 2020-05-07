@@ -1,18 +1,11 @@
-function menu(btn, btnClass, {
-    elements,
-    classList,
-}) {
+let scrollLineWidth = window.innerWidth - document.documentElement.clientWidth;
+
+function menu(btn, btnClass) {
     btn.onclick = () => {
-        if(!btn.classList.contains(btnClass)) {
-            let coords = btn.getBoundingClientRect();
-            btn.style.left = coords.left + 'px';
-            btn.style.top = coords.top + 'px';
-        } else {
-            btn.style.top = btn.style.left = "";
-        }
-        btn.classList.toggle(btnClass);
-        elements.forEach((item, i) => {
-            if(classList[i])item.classList.toggle(classList[i]);
-        });
+            btn.classList.toggle(btnClass);
+            document.body.classList.toggle(btn.dataset.bodyClass);
+            document.querySelector('.mobile__top').style.right = (btn.classList.contains(btnClass)) ? 
+            scrollLineWidth + 'px'
+            : ''; 
     }
 };
