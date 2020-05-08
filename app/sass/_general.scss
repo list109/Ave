@@ -447,6 +447,9 @@ button {
 	&_type_main {
 		.menu__item + .menu__item {
 			margin-left: 56.5px;
+			@media(max-width: 1300px) {
+				margin-left: 45px;
+			}
 		}
 		.menu__item {
 			position: relative;
@@ -635,12 +638,14 @@ button {
 .slider {
 	&__box {
 		overflow: hidden;
+		width: 100%;
+		height: calc(100vh - 45px);
 	}
 	&__line {
-		height: 919px;
 		display: flex;
 		justify-content: space-between;
 		transition: transform .4s linear;
+		height: 100%;
 		cursor: pointer;
 		@media(max-width: 1024px) and (orientation: portrait) {
 			height: 90vh;

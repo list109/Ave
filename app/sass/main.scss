@@ -60,12 +60,18 @@
         width: 95.5%;
         transform: translate(-50%, 100%);
         z-index: 5;
+        @include media-breakpoint-down(lg) {
+            top: 0;
+        }
         @include media-breakpoint-down(md) {
             display: none;
         }
     }
     &__form {
         margin-left: 115px;
+        @media(max-width: 1300px) {
+            margin-left: 60px;
+        }
         @include media-breakpoint-down(lg) {
             margin-top: 20px;
         }
@@ -370,32 +376,46 @@ body.header-mobile {
     }
     &_type_mobile {
         color: adjust-color($light-color, $lightness: -10%);
+        @include media-breakpoint-down(xs) {
+            font-size: 20px;
+        }
     }
 }
 
 .bunner { // font-size
     font-size: 1rem;
     min-width: 100%;
+    max-width: 100%;
+    position: relative;
     &__title {
         position: absolute;
+        z-index: 10;
+        max-width: 1200px;
         transform: translate(-50%, -50%);
-        left: 58%;
+        left: 55%;
         top: 50%;
         margin: 0;
         font-weight: 700;
-        letter-spacing: .65em;
         color: #575153;
         line-height: 1;
-        font-size: 25vw;
+        font-size: 20vw;
+        letter-spacing: 5vw;
+        text-align: center;
         @media(min-width: 1800px) {
             font-size: 450px;
+            letter-spacing: 80px;
+        }
+        &_light {
+            color: adjust-color($light-color, $lightness: -5%);
+            text-shadow: 0 0 5px $base-color;
         }
     }
     &__btn {
         position: absolute;
         z-index: 5;
         bottom: 13.3%;
-        right: 12.2%;    
+        right: 12.2%;  
+        text-decoration: none;
         @include media-breakpoint-down(md) {
             right: 50%;
             transform: translateX(50%);
@@ -403,7 +423,9 @@ body.header-mobile {
         }
     }
     &__image {
+        object-fit: cover;
         object-position: 50%;
+        position: absolute;
     }
 }
 //  7.2 ОСНОВНОЙ КОНТЕНТ ================================
