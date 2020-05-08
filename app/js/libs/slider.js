@@ -1,8 +1,8 @@
 
 class Slider {
-    constructor(slider, {pointClassName, pointsElem, time, arrowLeft, arrowRight}) { //the time argument takes a number value as seconds
+    constructor(slider, { pointClassName, pointsElem, time, arrowLeft, arrowRight }) { //the time argument takes a number value as seconds
         this.sliderLine = slider.querySelector('[data-slider-line]');
-        if(!this.sliderLine) return;
+        if (!this.sliderLine) return;
 
         this.sliderLine.style.cssText = "transform: translateX(0px);"
 
@@ -16,21 +16,22 @@ class Slider {
         this.isPressed = false;
         this.moveWithPressedMouse = this.moveWithPressedMouse.bind(this);
 
-        if(parseInt(time)) this.startTimer(); 
+        if (parseInt(time)) this.startTimer();
 
         slider.addEventListener('click', this.handleEvent.bind(this));
         slider.addEventListener('mousedown', this.handleEvent.bind(this));
         slider.addEventListener('mouseup', this.handleEvent.bind(this));
+        this.sliderLine.ontransitionend = () => { this.completeTransition() };
         window.addEventListener('resize', this.reset.bind(this));
     }
 
     handleEvent(event) {
 
         let point = event.target.closest('[data-slider-point]');
-        if(point && event.type == "click") {
-            if(!point.classList.contains(this.pointClassName)) event.preventDefault(); //prevent the pressed link going if it is the first time
-            if(point.dataset.sliderPoint - 1 == this.pointNumber) return; //if the pressed button is the same one like in the previous time then to return
-            if(this.time) { // if the point have pressed then to cancel the current timer and start it untill the transition end 
+        if (point && event.type == "click") {
+            if (!point.classList.contains(this.pointClassName)) event.preventDefault(); //prevent the pressed link going if it is the first time
+            if (point.dataset.sliderPoint - 1 == this.pointNumber) return; //if the pressed button is the same one like in the previous time then to return
+            if (this.time) { // if the point have pressed then to cancel the current timer and start it untill the transition end 
                 this.stopTimer(); // stop the timer anyway
                 this.startTimer();
             }
@@ -38,21 +39,21 @@ class Slider {
             return;
         }
 
-        if(event.target.closest('[data-slider-line]')) {
-            switch(event.type) {
+        if (event.target.closest('[data-slider-line]') && !this.isTransition) {
+            switch (event.type) {
                 case 'mousedown':
                     this.startWithPressedMouse(event);
-                    break;  
-                case 'dbclick':    
+                    break;
+                case 'dbclick':
                 case 'mouseup':
                     this.endWithPressedMouse(event.clientX);
                     break;
             }
-        } 
-        //if(event.target.closest('[data-slider-arrow]')) this.arrows(event.target);
-        
-    }
+        }
 
+        if(!event.target.closest('a')) event.preventDefault();
+        //if(event.target.closest('[data-slider-arrow]')) this.arrows(event.target);  
+    }
     /* arrows(elem) {
         let offsetWidth = this.sliderLine.offsetWidth;
         let left = parseInt(this.sliderLine.style.left);
@@ -69,9 +70,9 @@ class Slider {
     }
 
     changePoints(index) { // changes a class of the pressed button (slider point) and moves the slider tape (slider line)  
-        index = (index < 0) ? this.sliderLine.children.length - 1 : 
-                (index > this.sliderLine.children.length - 1) ? 0 : index;
-        if(this.pointsElem) {
+        index = (index < 0) ? this.sliderLine.children.length - 1 :
+            (index > this.sliderLine.children.length - 1) ? 0 : index;
+        if (this.pointsElem) {
             this.pointsElem.children[this.pointNumber].classList.remove(this.pointClassName);
             this.pointsElem.children[index].classList.add(this.pointClassName);
         }
@@ -92,48 +93,50 @@ class Slider {
         window.addEventListener('mousemove', this.moveWithPressedMouse);
     }
     endWithPressedMouse(clientX) {
-        if(!this.isPressed) return;
+        if (!this.isPressed) return;
 
         this.isPressed = false;
         this.sliderLine.style.transition = '';
 
         let diffOfDistance = clientX - this.startDistance;
-        if(Math.abs(diffOfDistance)  < this.sliderLine.offsetWidth * .2) {
+        if (Math.abs(diffOfDistance) < this.sliderLine.offsetWidth * .2) {
             this.sliderLine.style.transform = `translateX(${this.initialTransform}px)`;
         } else {
             this.changePoints((diffOfDistance < 0) ? this.pointNumber + 1 : this.pointNumber - 1);
         }
-        
+
         window.removeEventListener('mousemove', this.moveWithPressedMouse);
         this.startTimer();
     }
     moveWithPressedMouse(event) {
-        let diffOfDistance =  event.clientX - this.startDistance;
-        
+        let diffOfDistance = event.clientX - this.startDistance;
+
         let shift = this.initialTransform + diffOfDistance;
         let maxShift = -(this.sliderLine.scrollWidth - this.sliderLine.clientWidth);
         shift = (shift >= 0) ? 0 :
-                (shift <= maxShift) ? maxShift : shift;       
+            (shift <= maxShift) ? maxShift : shift;
 
         this.sliderLine.style.transform = `translateX(${shift}px)`;
-        
+
         let currentElem = document.elementFromPoint(event.clientX, event.clientY);
-        if(!this.sliderLine.contains(currentElem)) this.endWithPressedMouse(this.prevClientX);
+        if (!this.sliderLine.contains(currentElem)) this.endWithPressedMouse(this.prevClientX);
 
-        this.prevClientX = event.clientX; 
-
-        event.preventDefault();
+        this.prevClientX = event.clientX;
     }
 
+    completeTransition() {
+        this.isTransition = false;
+    }
 
     startTimer() {
         this.interval = setInterval(() => {
-            console.log(`setTimeout: ${this.timeout}`);
             let index = this.pointNumber + 1;
             this.changePoints(index);
+
+            this.isTransition = true;
         }, this.time * 1000);
     }
-    
+
     stopTimer() {
         clearInterval(this.interval);
     }
