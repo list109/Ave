@@ -1486,10 +1486,9 @@ body.header-mobile {
 .author {
   display: flex;
   flex-wrap: wrap; }
-  .author__item + .author__item {
-    margin-left: 37px; }
   .author__item {
-    padding: 5px 0; }
+    padding: 5px 0;
+    margin-right: 37px; }
   .author__item:hover {
     color: #fff; }
 
