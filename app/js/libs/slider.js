@@ -106,6 +106,7 @@ class Slider {
         }
 
         window.removeEventListener('mousemove', this.moveWithPressedMouse);
+        this.isTransition = true;
         this.startTimer();
     }
     moveWithPressedMouse(event) {
