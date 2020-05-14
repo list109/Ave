@@ -92,7 +92,7 @@
 
 body.header-mobile {
     overflow: hidden;
-    .mobile {
+    .mobile__box {
         overflow: auto;
     }
     .mobile__top {
@@ -107,11 +107,18 @@ body.header-mobile {
 }
 
 .mobile {
-    position: relative;
-    background-color: $base-color;
-    max-height: 100vh;
     @include media-breakpoint-up(lg) {
         display: none;
+    }
+    &__box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: $base-color;
+        max-height: 100vh;
+        z-index: 20;
     }
     &__top {
         position: relative;
@@ -121,9 +128,8 @@ body.header-mobile {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 15px;
-        z-index: 10;
         background-color: inherit;
+        padding: 10px 15px;
     }
     &__bottom {
         height: 0;
@@ -136,7 +142,7 @@ body.header-mobile {
             max-width: initial;
         }
     }
-    &__box {
+    &__bottom-box {
         display: flex;
         justify-content: space-between;
         align-items: center;

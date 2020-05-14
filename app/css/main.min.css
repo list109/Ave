@@ -943,7 +943,7 @@ button {
 
 body.header-mobile {
   overflow: hidden; }
-  body.header-mobile .mobile {
+  body.header-mobile .mobile__box {
     overflow: auto; }
   body.header-mobile .mobile__top {
     position: fixed; }
@@ -953,51 +953,61 @@ body.header-mobile {
     transition: height .3s;
     visibility: initial; }
 
-.mobile {
-  position: relative;
+@media (min-width: 992px) {
+  .mobile {
+    display: none; } }
+
+.mobile__box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   background-color: #333333;
-  max-height: 100vh; }
-  @media (min-width: 992px) {
-    .mobile {
-      display: none; } }
-  .mobile__top {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    z-index: 10;
-    background-color: inherit; }
-  .mobile__bottom {
-    height: 0;
-    visibility: hidden;
-    max-width: 70%;
-    min-width: 500px;
-    margin: auto; }
-    @media (max-width: 575.98px) {
-      .mobile__bottom {
-        min-width: initial;
-        max-width: initial; } }
-  .mobile__box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px; }
-    .mobile__box .link {
-      text-transform: uppercase;
-      color: #bfbfbf; }
-  .mobile__reg .link + .link {
-    margin-left: 20px; }
-  .mobile__form {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 25px; }
-    @media (max-width: 319.98px) {
-      .mobile__form {
-        display: inline-block; } }
+  max-height: 100vh;
+  z-index: 20; }
+
+.mobile__top {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: inherit;
+  padding: 10px 15px; }
+
+.mobile__bottom {
+  height: 0;
+  visibility: hidden;
+  max-width: 70%;
+  min-width: 500px;
+  margin: auto; }
+  @media (max-width: 575.98px) {
+    .mobile__bottom {
+      min-width: initial;
+      max-width: initial; } }
+
+.mobile__bottom-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; }
+  .mobile__bottom-box .link {
+    text-transform: uppercase;
+    color: #bfbfbf; }
+
+.mobile__reg .link + .link {
+  margin-left: 20px; }
+
+.mobile__form {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px; }
+  @media (max-width: 319.98px) {
+    .mobile__form {
+      display: inline-block; } }
 
 .mobile-btn {
   position: relative;
