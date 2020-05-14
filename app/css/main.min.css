@@ -964,7 +964,6 @@ body.header-mobile {
   right: 0;
   z-index: 10;
   background-color: #333333;
-  max-height: 100vh;
   z-index: 20; }
 
 .mobile__top {
@@ -975,7 +974,6 @@ body.header-mobile {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: inherit;
   padding: 10px 15px; }
 
 .mobile__bottom {
