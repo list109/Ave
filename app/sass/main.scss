@@ -417,9 +417,15 @@ body.header-mobile {
         right: 12.2%;  
         text-decoration: none;
         @include media-breakpoint-down(md) {
-            right: 50%;
-            transform: translateX(50%);
+            right: initial;
+            left: 50%;
+            max-width: 280px;
+            transform: translateX(-50%);
             white-space: nowrap;
+            text-align: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            letter-spacing: 0.1em;
         }
     }
     &__image {
