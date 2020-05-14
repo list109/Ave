@@ -644,6 +644,9 @@ button {
       @media (max-width: 991.98px) {
         .links_type_footer .links__item {
           background-color: #333333; } }
+      @media (max-width: 575.98px) {
+        .links_type_footer .links__item {
+          font-size: 25px; } }
     .links_type_footer .links__item + .links__item {
       margin-left: 25px; }
 
@@ -1221,9 +1224,15 @@ body.header-mobile {
     text-decoration: none; }
     @media (max-width: 991.98px) {
       .bunner__btn {
-        right: 50%;
-        transform: translateX(50%);
-        white-space: nowrap; } }
+        right: initial;
+        left: 50%;
+        max-width: 280px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        letter-spacing: 0.1em; } }
   .bunner__image {
     object-fit: cover;
     object-position: 50%;

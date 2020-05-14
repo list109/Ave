@@ -364,6 +364,9 @@ button {
 			@media(max-width: 991.98px) {
 				background-color: $base-color;
 			}
+			@include media-breakpoint-down(xs) {
+				font-size: 25px;
+			}
 		}
 		.links__item + .links__item {
 			margin-left: 25px;
